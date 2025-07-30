@@ -174,6 +174,152 @@ declare namespace p5 {
      * }
      */
     keyDown(key: number | P5PlayKey): boolean;
+    
+    /**
+     * Mouse input methods for handling mouse events
+     */
+    
+    /**
+     * Returns true if the specified mouse button is currently pressed
+     * @param buttonCode - Mouse button code (LEFT, RIGHT, CENTER)
+     * @returns True if mouse button is currently pressed
+     * @example
+     * if (mouseDown(LEFT)) {
+     *   player.attack();
+     * }
+     */
+    mouseDown(buttonCode: number): boolean;
+    
+    /**
+     * Returns true if the specified mouse button was just pressed this frame
+     * @param buttonCode - Mouse button code (LEFT, RIGHT, CENTER)
+     * @returns True if mouse button was pressed this frame
+     * @example
+     * if (mouseWentDown(LEFT)) {
+     *   player.jump();
+     * }
+     */
+    mouseWentDown(buttonCode: number): boolean;
+    
+    /**
+     * Returns true if the specified mouse button was just released this frame
+     * @param buttonCode - Mouse button code (LEFT, RIGHT, CENTER)
+     * @returns True if mouse button was released this frame
+     * @example
+     * if (mouseWentUp(LEFT)) {
+     *   player.stopJump();
+     * }
+     */
+    mouseWentUp(buttonCode: number): boolean;
+    
+    /**
+     * Returns true if the specified mouse button is currently not pressed
+     * @param buttonCode - Mouse button code (LEFT, RIGHT, CENTER)
+     * @returns True if mouse button is not pressed
+     * @example
+     * if (mouseUp(LEFT)) {
+     *   player.idle();
+     * }
+     */
+    mouseUp(buttonCode: number): boolean;
+    
+    /**
+     * Returns true if the mouse cursor is over the specified sprite
+     * @param sprite - Sprite to check mouse position against
+     * @returns True if mouse is over the sprite
+     * @example
+     * if (mouseIsOver(player)) {
+     *   player.highlight();
+     * }
+     */
+    mouseIsOver(sprite: Sprite): boolean;
+    
+    /**
+     * Returns true if the mouse was pressed while over the specified sprite
+     * @param sprite - Sprite to check mouse interaction with
+     * @returns True if mouse was pressed over the sprite
+     * @example
+     * if (mousePressedOver(button)) {
+     *   button.click();
+     * }
+     */
+    mousePressedOver(sprite: Sprite): boolean;
+    
+    /**
+     * Returns true if the mouse has moved since the last frame
+     * @returns True if mouse moved
+     * @example
+     * if (mouseDidMove()) {
+     *   updateCursor();
+     * }
+     */
+    mouseDidMove(): boolean;
+    
+    /**
+     * Drawing methods for enhanced shapes and graphics
+     */
+    
+    /**
+     * Draws a regular polygon with the specified number of sides
+     * @param x - X coordinate of the polygon center
+     * @param y - Y coordinate of the polygon center
+     * @param sides - Number of sides (3 = triangle, 4 = square, etc.)
+     * @param size - Size of the polygon (radius from center to vertices)
+     * @param rotation - Rotation angle in degrees (optional)
+     * @example
+     * // Draw a triangle
+     * regularPolygon(200, 200, 3, 50);
+     * 
+     * // Draw a rotated hexagon
+     * regularPolygon(300, 300, 6, 40, 30);
+     */
+    regularPolygon(x: number, y: number, sides: number, size: number, rotation?: number): void;
+    
+    /**
+     * Begins a custom shape definition
+     * Use with vertex() to define custom shapes
+     * @example
+     * shape();
+     * vertex(0, 0);
+     * vertex(50, 0);
+     * vertex(25, 50);
+     * endShape();
+     */
+    shape(): void;
+    
+    /**
+     * Creates a color using RGB values
+     * @param r - Red component (0-255)
+     * @param g - Green component (0-255)
+     * @param b - Blue component (0-255)
+     * @param a - Alpha component (0-255, optional)
+     * @returns Color object
+     * @example
+     * let red = rgb(255, 0, 0);
+     * let blue = rgb(0, 0, 255, 128); // Semi-transparent blue
+     */
+    rgb(r: number, g: number, b: number, a?: number): any;
+    
+    /**
+     * Utility methods for advanced functionality
+     */
+    
+    /**
+     * Enables or disables quad tree collision detection for better performance
+     * @param use - Whether to use quad tree collision detection
+     * @example
+     * useQuadTree(true); // Enable for better performance with many sprites
+     * useQuadTree(false); // Disable for simpler collision detection
+     */
+    useQuadTree(use: boolean): void;
+    
+    /**
+     * Reads and processes all key presses from the input buffer
+     * Called automatically each frame, but can be called manually
+     * @example
+     * readPresses(); // Process all pending key events
+     */
+    readPresses(): void;
   }
 }
 
@@ -1055,10 +1201,28 @@ declare function cameraPop(): void;
  * Creates invisible sprites at the screen edges for boundary detection
  * Creates four sprites: topEdge, bottomEdge, leftEdge, rightEdge
  * Also creates an 'edges' group containing all four edge sprites
+ * 
+ * These edge sprites are useful for keeping game objects within the screen bounds
+ * and creating boundary collision detection without manually positioning sprites.
+ * 
  * @example
+ * // Create edge sprites for boundary detection
  * createEdgeSprites();
- * player.bounceOff(edges); // Bounce off all edges
+ * 
+ * // Make player bounce off all edges
+ * player.bounceOff(edges);
+ * 
+ * // Make player bounce off specific edges
  * player.bounceOff(topEdge); // Bounce off top edge only
+ * player.bounceOff(bottomEdge); // Bounce off bottom edge only
+ * 
+ * // Keep enemies within screen bounds
+ * enemy.bounceOff(edges);
+ * 
+ * // Create a platformer with floor collision
+ * player.bounceOff(bottomEdge); // Player lands on ground
+ * player.bounceOff(leftEdge); // Player hits left wall
+ * player.bounceOff(rightEdge); // Player hits right wall
  */
 declare function createEdgeSprites(): void;
 
@@ -1112,6 +1276,152 @@ declare function keyWentUp(key: number | P5PlayKey): boolean;
 declare function keyDown(key: number | P5PlayKey): boolean;
 
 /**
+ * Mouse input global functions - Handle mouse events
+ */
+
+/**
+ * Returns true if the specified mouse button is currently pressed
+ * @param buttonCode - Mouse button code (LEFT, RIGHT, CENTER)
+ * @returns True if mouse button is currently pressed
+ * @example
+ * if (mouseDown(LEFT)) {
+ *   player.attack();
+ * }
+ */
+declare function mouseDown(buttonCode: number): boolean;
+
+/**
+ * Returns true if the specified mouse button was just pressed this frame
+ * @param buttonCode - Mouse button code (LEFT, RIGHT, CENTER)
+ * @returns True if mouse button was pressed this frame
+ * @example
+ * if (mouseWentDown(LEFT)) {
+ *   player.jump();
+ * }
+ */
+declare function mouseWentDown(buttonCode: number): boolean;
+
+/**
+ * Returns true if the specified mouse button was just released this frame
+ * @param buttonCode - Mouse button code (LEFT, RIGHT, CENTER)
+ * @returns True if mouse button was released this frame
+ * @example
+ * if (mouseWentUp(LEFT)) {
+ *   player.stopJump();
+ * }
+ */
+declare function mouseWentUp(buttonCode: number): boolean;
+
+/**
+ * Returns true if the specified mouse button is currently not pressed
+ * @param buttonCode - Mouse button code (LEFT, RIGHT, CENTER)
+ * @returns True if mouse button is not pressed
+ * @example
+ * if (mouseUp(LEFT)) {
+ *   player.idle();
+ * }
+ */
+declare function mouseUp(buttonCode: number): boolean;
+
+/**
+ * Returns true if the mouse cursor is over the specified sprite
+ * @param sprite - Sprite to check mouse position against
+ * @returns True if mouse is over the sprite
+ * @example
+ * if (mouseIsOver(player)) {
+ *   player.highlight();
+ * }
+ */
+declare function mouseIsOver(sprite: Sprite): boolean;
+
+/**
+ * Returns true if the mouse was pressed while over the specified sprite
+ * @param sprite - Sprite to check mouse interaction with
+ * @returns True if mouse was pressed over the sprite
+ * @example
+ * if (mousePressedOver(button)) {
+ *   button.click();
+ * }
+ */
+declare function mousePressedOver(sprite: Sprite): boolean;
+
+/**
+ * Returns true if the mouse has moved since the last frame
+ * @returns True if mouse moved
+ * @example
+ * if (mouseDidMove()) {
+ *   updateCursor();
+ * }
+ */
+declare function mouseDidMove(): boolean;
+
+/**
+ * Drawing global functions - Enhanced shapes and graphics
+ */
+
+/**
+ * Draws a regular polygon with the specified number of sides
+ * @param x - X coordinate of the polygon center
+ * @param y - Y coordinate of the polygon center
+ * @param sides - Number of sides (3 = triangle, 4 = square, etc.)
+ * @param size - Size of the polygon (radius from center to vertices)
+ * @param rotation - Rotation angle in degrees (optional)
+ * @example
+ * // Draw a triangle
+ * regularPolygon(200, 200, 3, 50);
+ * 
+ * // Draw a rotated hexagon
+ * regularPolygon(300, 300, 6, 40, 30);
+ */
+declare function regularPolygon(x: number, y: number, sides: number, size: number, rotation?: number): void;
+
+/**
+ * Begins a custom shape definition
+ * Use with vertex() to define custom shapes
+ * @example
+ * shape();
+ * vertex(0, 0);
+ * vertex(50, 0);
+ * vertex(25, 50);
+ * endShape();
+ */
+declare function shape(): void;
+
+/**
+ * Creates a color using RGB values
+ * @param r - Red component (0-255)
+ * @param g - Green component (0-255)
+ * @param b - Blue component (0-255)
+ * @param a - Alpha component (0-255, optional)
+ * @returns Color object
+ * @example
+ * let red = rgb(255, 0, 0);
+ * let blue = rgb(0, 0, 255, 128); // Semi-transparent blue
+ */
+declare function rgb(r: number, g: number, b: number, a?: number): any;
+
+/**
+ * Utility global functions - Advanced functionality
+ */
+
+/**
+ * Enables or disables quad tree collision detection for better performance
+ * @param use - Whether to use quad tree collision detection
+ * @example
+ * useQuadTree(true); // Enable for better performance with many sprites
+ * useQuadTree(false); // Disable for simpler collision detection
+ */
+declare function useQuadTree(use: boolean): void;
+
+/**
+ * Reads and processes all key presses from the input buffer
+ * Called automatically each frame, but can be called manually
+ * @example
+ * readPresses(); // Process all pending key events
+ */
+declare function readPresses(): void;
+
+/**
  * Animation global functions - Create and manage animations
  */
 
@@ -1123,15 +1433,25 @@ declare function keyDown(key: number | P5PlayKey): boolean;
  * @param frameImages - Image files or p5.Image objects for each frame. Can be individual files or sequence patterns.
  * @returns A new Animation object with the loaded frames
  * @example
- * // Load individual image files
+ * // Load individual image files for walking animation
  * let walkAnim = loadAnimation("walk1.png", "walk2.png", "walk3.png");
  * player.addAnimation("walk", walkAnim);
  * 
  * // Load sequence animation (numbered files)
  * let sequenceAnim = loadAnimation("data/walking0001.png", "data/walking0005.png");
  * 
- * // Load mixed animation
+ * // Load mixed animation for special effects
  * let glitchAnim = loadAnimation("data/dog.png", "data/horse.png", "data/cat.png", "data/snake.png");
+ * 
+ * // Load sprite sheet frames
+ * let explosionAnim = loadAnimation("explosion1.png", "explosion2.png", "explosion3.png", "explosion4.png");
+ * explosion.addAnimation("explode", explosionAnim);
+ * 
+ * // Load character animations
+ * let idleAnim = loadAnimation("idle1.png", "idle2.png");
+ * let jumpAnim = loadAnimation("jump1.png", "jump2.png");
+ * player.addAnimation("idle", idleAnim);
+ * player.addAnimation("jump", jumpAnim);
  */
 declare function loadAnimation(...frameImages: (p5.Image | string)[]): Animation;
 
@@ -1192,6 +1512,13 @@ declare const CENTER: string;
 declare const RIGHT: string;
 declare const TOP: string;
 declare const BOTTOM: string;
+
+/**
+ * Mouse button constants
+ */
+declare const LEFT_BUTTON: number;
+declare const RIGHT_BUTTON: number;
+declare const CENTER_BUTTON: number;
 
 /**
  * Animation global functions - Create and manage animations
