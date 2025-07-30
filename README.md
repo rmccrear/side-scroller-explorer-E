@@ -27,7 +27,7 @@ After completing these steps, take a careful look at `script.js` and try to unde
 - [ ] (3) Change jump to use gravity instead of simply setting the velocity in `user-controls.js` (Use counter pattern)
 - [ ] (4) Add a startup screen
 - [ ] (5) Don't let the player "double jump" if the up arrow is pressed while it is mid jump (Hint: use a variable like `isJumping`)
-
+- [ ] (6) Use height and width variables instead of the magic number 400 in your code so you can change the size of the canvas.
 
 ## 🚀 Quick Start
 
