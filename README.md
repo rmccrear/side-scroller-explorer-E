@@ -1,8 +1,32 @@
 # 🎮 Game Lab Starter Code
 
-> **CSD Unit 3 Lesson 27 or 28**
+> **Game Lab Side Scroller**
 
 This is starter code that sets up a VSCode environment to mimic the coding experience in Code.org's Game Lab.
+
+## Purpose
+
+The purpose of this repo is to allow you to explore how to use VSCode and Game Lab in a working game. Try to work together to make the following improvements to the game.
+
+**Quick Fixes**
+
+1.Add a mountain to the background in `background.js`
+2. Change one of the sprites in `animations.js`
+3. Randomize the position and speed of the enemy and food. `sprite-movement.js`
+3. Health decreases when the player touches the enemy (multiple files)
+4. Add health to the display board `display-board.js`
+5. Change the rotation of the enemy when it attacks the player `sprite-interactions.js`. (touches)
+
+After completing these steps, take a careful look at `script.js` try and understand how all the pieces fit. Then move on to Challenges.
+
+**Challenges**
+
+1. Add a Game Over background using a function `background.js`
+2. Change color and position of sun as time goes on. `background.js` (Use counter pattern.)
+3. Change jump to use gravity instead of simply setting the velocity. `user-controls.js` (Use counter pattern.)
+4. Add a startup screen.
+5. Don't let the player "double jump" if the up arrow is pressed while it is mid jump. (Hint: use a variable like `isJumping`.)
+
 
 ## 🚀 Quick Start
 
