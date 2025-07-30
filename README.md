@@ -14,7 +14,7 @@ The purpose of this repo is to allow you to explore how to use VSCode and Game L
 - [ ] (2) Change one of the sprites in `animations.js`
 - [ ] (3) Randomize the position and speed of the enemy and food in `sprite-movement.js`
 - [ ] (4) Health decreases when the player touches the enemy (multiple files)
-- [ ] (5) Add health to the display board in `display-boards.js`
+- [ ] (5) Add health to the display boards in `display-boards.js`
 - [ ] (6) Change the rotation of the enemy when it attacks the player in `sprite-interactions.js` (touches)
 - [ ] (7) Fix the player's jump so they don't fall through the floor
 
@@ -50,7 +50,7 @@ npx live-server
 
 ## 📁 Project Structure
 
-In GameLab, you typically work with one file, but for team collaboration, the code is divided among several files in the `js/` directory.
+In Game Lab, you typically work with one file, but for team collaboration, the code is divided among several files in the `js/` directory.
 
 ### 🎯 Team Roles & Responsibilities
 

@@ -26,7 +26,7 @@ function draw() {
   doSpriteMovement();
 
   // control sprite interaction (bounce, displace, collide)
-  // in: sprite-interaction.
+  // in: sprite-interactions.js
   doSpriteInteraction();
 
   // This just draws all the sprites
