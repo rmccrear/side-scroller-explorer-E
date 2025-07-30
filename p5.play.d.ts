@@ -223,10 +223,20 @@ declare class Sprite {
   /** Change in Y position this frame */
   deltaY: number;
   
-  /** X coordinate of sprite center (shortcut for position.x) */
+  /** 
+   * X coordinate of sprite center (shortcut for position.x)
+   * @example
+   * fly.x = 400; // Move fly to right edge
+   * if (frog.x > 400) { frog.x = 0; } // Wrap around screen
+   */
   x: number;
   
-  /** Y coordinate of sprite center (shortcut for position.y) */
+  /** 
+   * Y coordinate of sprite center (shortcut for position.y)
+   * @example
+   * frog.y = 320; // Set frog to ground level
+   * if (frog.y <= 100) { frog.velocityY = 4; } // Start falling
+   */
   y: number;
   
   /**
@@ -354,8 +364,15 @@ declare class Sprite {
    * @param label - Name to reference this animation
    * @param animation - Animation object to add
    * @example
+   * // Load animations first
+   * let flyAnimation = loadSpriteSheet("sprites/fly.png", 64, 45, 2);
+   * let frogAnimation = loadAnimation("sprites/frog.png");
+   * 
+   * // Add animations to sprites
    * let walkAnim = loadAnimation("walk1.png", "walk2.png", "walk3.png");
    * player.addAnimation("walk", walkAnim);
+   * fly.addAnimation('fly', flyAnimation);
+   * frog.addAnimation('frog', frogAnimation);
    */
   addAnimation(label: string, animation: Animation): void;
   
@@ -400,10 +417,17 @@ declare class Sprite {
   
   /**
    * Sets the sprite's velocity
-   * @param x - Horizontal velocity
-   * @param y - Vertical velocity
+   * @param x - Horizontal velocity (positive = right, negative = left)
+   * @param y - Vertical velocity (positive = down, negative = up)
    * @example
+   * // Set horizontal movement
    * player.setVelocity(5, -10); // Move right and up
+   * food.velocityX = -1; // Move left only
+   * enemy.velocityX = -5; // Move left faster
+   * 
+   * // Set vertical movement
+   * player.velocityY = -4; // Jump up
+   * player.velocityY = 4; // Fall down
    */
   setVelocity(x: number, y: number): void;
   
@@ -509,6 +533,17 @@ declare class Sprite {
    * Checks if sprite is touching another sprite or group
    * @param target - Sprite or group to check
    * @returns True if touching
+   * @example
+   * // Check collision between game objects
+   * if (frog.isTouching(fly)) {
+   *   score = score + 10; // Add points
+   *   fly.x = 400; // Reset fly position
+   * }
+   * 
+   * // Check collision with groups
+   * if (player.isTouching(enemies)) {
+   *   player.health -= 10;
+   * }
    */
   isTouching(target: Sprite | Group): boolean;
   
@@ -920,13 +955,20 @@ declare class SpriteSheet {
 /**
  * Creates a new sprite at the specified position and size
  * @param x - X coordinate of the sprite's center
- * @param y - Y coordinate of the sprite's center
+ * @param y - Y coordinate of the sprite's center  
  * @param width - Width of the sprite (optional, defaults to 50)
  * @param height - Height of the sprite (optional, defaults to 50)
  * @returns A new Sprite object
  * @example
+ * // Create sprites with different sizes
  * let player = createSprite(200, 200, 50, 50);
  * let enemy = createSprite(300, 300); // Uses default size
+ * let smallItem = createSprite(100, 100, 30, 30);
+ * 
+ * // Create sprites for game objects
+ * let fly = createSprite(400, 150, 30, 30);
+ * let frog = createSprite(200, 320, 40, 40);
+ * let mushroom = createSprite(400, 320, 35, 35);
  */
 declare function createSprite(x: number, y: number, width?: number, height?: number): Sprite;
 
@@ -943,8 +985,22 @@ declare function createGroup(): Group;
  * Draws all sprites to the canvas
  * @param group - Optional group to draw (if not specified, draws all sprites)
  * @example
- * drawSprites(); // Draw all sprites
+ * // Draw all sprites (most common usage)
+ * drawSprites();
+ * 
+ * // Draw specific groups
  * drawSprites(enemies); // Draw only enemies
+ * drawSprites(collectibles); // Draw only collectibles
+ * 
+ * // Typical usage in draw() function
+ * function draw() {
+ *   drawBackground();
+ *   showBoards();
+ *   respondToUser();
+ *   doSpriteMovement();
+ *   doSpriteInteraction();
+ *   drawSprites(); // Draw all sprites last
+ * }
  */
 declare function drawSprites(group?: Group): void;
 
@@ -1015,8 +1071,20 @@ declare function createEdgeSprites(): void;
  * @param key - Key code or string alias (e.g., 'SPACE', 'A', 32)
  * @returns True if key was pressed this frame
  * @example
+ * // Handle jumping controls
  * if (keyWentDown('SPACE')) {
  *   player.jump();
+ * }
+ * if (keyWentDown('UP')) {
+ *   frog.velocityY = -4; // Jump up
+ * }
+ * 
+ * // Handle movement controls
+ * if (keyWentDown('LEFT')) {
+ *   player.velocityX = -2;
+ * }
+ * if (keyWentDown('RIGHT')) {
+ *   player.velocityX = 2;
  * }
  */
 declare function keyWentDown(key: number | P5PlayKey): boolean;
@@ -1110,4 +1178,21 @@ declare function playSound(filename: string, loop?: boolean): void;
  * @example
  * stopSound("background_music.mp3");
  */
-declare function stopSound(filename: string): void; 
+declare function stopSound(filename: string): void;
+
+/**
+ * p5.js Constants - Used for alignment and positioning
+ */
+
+/**
+ * Text alignment constants
+ */
+declare const LEFT: string;
+declare const CENTER: string;
+declare const RIGHT: string;
+declare const TOP: string;
+declare const BOTTOM: string;
+
+/**
+ * Animation global functions - Create and manage animations
+ */ 

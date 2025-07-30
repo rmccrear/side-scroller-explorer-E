@@ -1,7 +1,23 @@
 {
   "compilerOptions": {
-    "checkJs": true
+    "checkJs": true,
+    "allowJs": true,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM"]
   },
-  "include": ["*.js", "p5.play.d.ts", "js/*.js", "vendor/*.js"],
-  "exclude": ["vendor/**/*", "node_modules/**/*"]
+  "include": [
+    "*.js", 
+    "*.d.ts", 
+    "p5.play.d.ts", 
+    "p5.d.ts",
+    "extras.d.ts",
+    "js/*.js", 
+    "vendor/*.js"
+  ],
+  "exclude": [
+    "vendor/**/*", 
+    "node_modules/**/*"
+  ]
 }
