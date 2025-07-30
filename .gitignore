@@ -1,0 +1,25 @@
+## Tell git to ignore these files...
+
+## Most Essential node.js Entries
+node_modules/
+npm-debug.log*
+
+## Most Essential macOS Entries
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+## Most Essential Windows Entries
+Desktop.ini
+$RECYCLE.BIN/
+System Volume Information/
+$WINDOWS.~BT/
+$WINDOWS.~WS/
+*.temp
+*.tmp
+*.log
+*.bak
