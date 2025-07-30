@@ -18,6 +18,20 @@ function stopSound(filename) {
   }
 } 
 
+/**
+ * Generates a random number between min and max (inclusive)
+ * @param {number} min - Minimum value
+ * @param {number} max - Maximum value
+ * @returns {number} Random number between min and max
+ * @example
+ * let randomX = randomNumber(0, 400); // Random X position
+ * let randomY = randomNumber(100, 300); // Random Y position
+ * let randomSpeed = randomNumber(1, 5); // Random speed
+ */
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // Edge sprites for screen boundaries
 var topEdge, bottomEdge, leftEdge, rightEdge, edges;
 
