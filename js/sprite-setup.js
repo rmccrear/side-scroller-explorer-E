@@ -6,7 +6,8 @@ function setupSprites() {
   // Create food sprite - moving from right to left
   food = createSprite(400, 150, 30, 30);
   food.addAnimation('food', foodAnimation);
-  food.setVelocity(-1, 0);
+  food.velocityX = -1;
+  food.velocityY = 0;
   
   // Create player sprite
   player = createSprite(200, 320, 40, 40);
@@ -15,5 +16,6 @@ function setupSprites() {
   // Create enemy sprite - moving from right to left
   enemy = createSprite(400, 320, 35, 35);
   enemy.addAnimation('enemy', enemyAnimation);
-  enemy.setVelocity(-5, 0);
+  enemy.velocityX = -5;
+  enemy.velocityY = 0;
 }
