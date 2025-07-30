@@ -1049,13 +1049,46 @@ declare function keyDown(key: number | P5PlayKey): boolean;
 
 /**
  * Creates an animation from a sequence of images
- * @param frameImages - Image files or p5.Image objects for each frame
- * @returns A new Animation object
+ * To be typically used in the preload() function of the sketch.
+ * Can load individual image files or create sequence animations from numbered files.
+ * 
+ * @param frameImages - Image files or p5.Image objects for each frame. Can be individual files or sequence patterns.
+ * @returns A new Animation object with the loaded frames
  * @example
+ * // Load individual image files
  * let walkAnim = loadAnimation("walk1.png", "walk2.png", "walk3.png");
  * player.addAnimation("walk", walkAnim);
+ * 
+ * // Load sequence animation (numbered files)
+ * let sequenceAnim = loadAnimation("data/walking0001.png", "data/walking0005.png");
+ * 
+ * // Load mixed animation
+ * let glitchAnim = loadAnimation("data/dog.png", "data/horse.png", "data/cat.png", "data/snake.png");
  */
 declare function loadAnimation(...frameImages: (p5.Image | string)[]): Animation;
+
+/**
+ * Loads a Sprite Sheet.
+ * To be typically used in the preload() function of the sketch.
+ * There are two different ways to load a SpriteSheet:
+ * 1. Using width, height for each frame and number of frames
+ * 2. Using an array of objects that define each frame
+ *
+ * @param image - Path to the sprite sheet image or p5.Image object
+ * @param frameWidth - Width of each frame in pixels, or array of frame definitions
+ * @param frameHeight - Height of each frame in pixels (required if frameWidth is a number)
+ * @param numFrames - Number of frames in the sprite sheet (required if frameWidth is a number)
+ * @param callback - Callback function to execute when image loads
+ * @returns A SpriteSheet object containing the loaded frames
+ * @example
+ * // Method 1 - Using width, height for each frame and number of frames
+ * var explodeAnimation = loadSpriteSheet('assets/explode_sprite_sheet.png', 171, 158, 11);
+ * 
+ * // Method 2 - Using an array of objects that define each frame
+ * var playerFrames = loadJSON('assets/tiles.json');
+ * var playerAnimation = loadSpriteSheet('assets/player_spritesheet.png', playerFrames);
+ */
+declare function loadSpriteSheet(image: string | p5.Image, frameWidth: number | any[], frameHeight?: number, numFrames?: number, callback?: Function): SpriteSheet;
 
 /**
  * Sound functions - Play audio using HTML5 Audio API
