@@ -10,5 +10,5 @@ function drawBackground() {
     
     // Grass at the bottom (100px high)
     fill(34, 139, 34);
-    rect(0, height - 100, width, 100);
+    rect(0, 400 - 100, width, 100);
 }
