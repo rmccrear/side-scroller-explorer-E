@@ -1,9 +1,10 @@
-var alienAnimation;
-var starAnimation;
+var foodAnimation;
+var playerAnimation;
+var enemyAnimation;
 
 function setupAnimations(){
-  // Example Code follows.
-  // Please delete and replace with your own code.
-  alienAnimation = loadAnimation("../sprites/alien-1.png", "../sprites/alien-2.png");
-  starAnimation = loadAnimation("../sprites/star-1.png", "../sprites/star-2.png", "../sprites/star-3.png", "../sprites/star-4.png");
+  // Load sprite animations
+  foodAnimation = loadSpriteSheet("sprites/fly.png", 64, 45, 2);
+  playerAnimation = loadAnimation("sprites/frog.png");
+  enemyAnimation = loadAnimation("sprites/mushroom.png");
 }

@@ -1,18 +1,19 @@
 
 function setupSprites() {
-  // Example Code follows.
-  // Please delete and replace with your own code.
-  player = createSprite(200, 200, 50, 50);
-  player.addAnimation('fly', alienAnimation);
-  player.setVelocity(2, 1);
-  player.height = 50;
-  player.width = 50;
-
-  star = createSprite(100, 100, 50, 50);
-  star.shapeColor = "aqua";
-  // star.addAnimation('twinkle', starAnimation);
-  // star.velocityX = -1;
-  // star.velocityY = -2;
-  // star.height = 30;
-  // star.width = 30;
+  // Initialize score
+  score = 0;
+  
+  // Create food sprite - moving from right to left
+  food = createSprite(400, 150, 30, 30);
+  food.addAnimation('food', foodAnimation);
+  food.setVelocity(-1, 0);
+  
+  // Create player sprite
+  player = createSprite(200, 320, 40, 40);
+  player.addAnimation('player', playerAnimation);
+  
+  // Create enemy sprite - moving from right to left
+  enemy = createSprite(400, 320, 35, 35);
+  enemy.addAnimation('enemy', enemyAnimation);
+  enemy.setVelocity(-5, 0);
 }

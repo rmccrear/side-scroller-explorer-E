@@ -1,6 +1,6 @@
-// Example Code follows.
-// Please delete and replace with your own code.
+// Sprite variables
+var food;
 var player;
-var star;
+var enemy;
 var score;
 
