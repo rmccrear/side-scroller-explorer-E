@@ -39,9 +39,9 @@ When completing these tasks, refer back to the code in [Unit 3](https://studio.c
 You may also look at[documentation for p5](./P5_DOCS.md) and for [p5.play](./P5_PLAY_DOCS.md) for easy reference.
 
 - [ ] (1) Add a mountain to the background in `background.js`
-- [ ] (2) Change one of the sprites in `animations.js`
+- [ ] (2) Fix one of the sprites in `animations.js`
 - [ ] (3) Randomize the position and speed of the enemy and food in `sprite-movement.js`
-- [ ] (4) Health decreases when the player touches the enemy (multiple files) Hint: use the Watcher in Dev Tools
+- [ ] (4) Health decreases when the player touches the enemy (multiple files) Hint: use the Watcher in Dev Tools to monitor the changes in the variable.
 - [ ] (5) Add health to the display boards in `display-boards.js`
 - [ ] (6) Change the rotation of the enemy when it attacks the player in `sprite-interactions.js` (touches)
 - [ ] (7) Fix the player's jump so they don't fall through the floor
@@ -51,11 +51,12 @@ After completing these steps, take a careful look at `script.js` and try to unde
 **Challenges**
 
 - [ ] (1) Add a Game Over background using a function in `background.js`
-- [ ] (2) Change color and position of sun as time goes on in `background.js` (Use counter pattern)
-- [ ] (3) Change jump to use gravity instead of simply setting the velocity in `user-controls.js` (Use counter pattern)
-- [ ] (4) Add a startup screen
-- [ ] (5) Don't let the player "double jump" if the up arrow is pressed while it is mid jump (Hint: use a variable like `isJumping`)
-- [ ] (6) Use height and width variables instead of the magic number 400 in your code so you can change the size of the canvas.
+- [ ] (2) Customize one of the sprite animations to your use your own image file in `sprite-setup.js`
+- [ ] (3) Change color and position of sun as time goes on in `background.js` (Use counter pattern)
+- [ ] (4) Change jump to use gravity instead of simply setting the velocity in `user-controls.js` (Use counter pattern)
+- [ ] (5) Add a startup screen
+- [ ] (6) Don't let the player "double jump" if the up arrow is pressed while it is mid jump (Hint: use a variable like `isJumping`)
+- [ ] (7) Use height and width variables instead of the magic number 400 in your code so you can change the size of the canvas.
 
 ## 🚀 Quick Start
 
