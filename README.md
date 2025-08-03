@@ -8,9 +8,31 @@ This is starter code that sets up a VSCode environment to mimic the coding exper
 
 The purpose of this repo is to allow you to explore how to use VSCode and Game Lab in a working game. Try to work together to make the following improvements to the game.
 
+## Setup
+
+Clone this repo to your computer and navigate to the project
+
+```bash
+  git clone [address of repo]
+  cd side-scroller-explorer
+```
+
+Run these two commands in the project directory. (requires node.js to be installed). The first command will install some files useful for the project and the second will start a server to run your game in development.
+
+```bash
+  npm install
+  npx live-server
+```
+
+After competing setup, move to tasks.
+
+## Tasks
+
+This game is unfinished! Here are some important updates we'd like to make on the game.
+
 **Quick Fixes**
 
-Please work on these 7 updates to the game. (You don't need to do them in order.) You may work on them all together, break into pairs and divide the work.
+Please work on these 7 updates to the game. (You don't need to do them in order.) You may work on them all together, break into pairs and divide the work. Remember to commit your code after each step.
 
 When completing these tasks, refer back to the code in [Unit 3](https://studio.code.org/courses/csd-2024/units/3) of Computer Science Discoveries. You may find your own code for [Lesson 21](https://studio.code.org/courses/csd-2024/units/3/lessons/21/student) useful. 
 
