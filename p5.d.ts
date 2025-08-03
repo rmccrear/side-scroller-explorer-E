@@ -29,14 +29,15 @@ declare function createCanvas(w: number, h: number, renderer?: any): HTMLCanvasE
 
 /**
  * Sets the background color of the canvas
- * @param r - Red value (0-255)
+ * @param r - Red value (0-255) or color object
  * @param g - Green value (0-255)
  * @param b - Blue value (0-255)
  * @example
  * background(135, 206, 235); // Sky blue
  * background(34, 139, 34); // Forest green
+ * background(color(135, 0, 235)); // Using color object
  */
-declare function background(r: number, g: number, b: number): void;
+declare function background(r: number | any, g?: number, b?: number): void;
 
 /**
  * Sets the fill color for shapes
@@ -251,7 +252,7 @@ declare function dist(x1: number, y1: number, x2: number, y2: number): number;
 
 /**
  * Creates a color object
- * @param r - Red value (0-255)
+ * @param r - Red value (0-255) or grayscale value (0-255) if used alone
  * @param g - Green value (0-255)
  * @param b - Blue value (0-255)
  * @param a - Alpha value (0-255, optional)
@@ -259,8 +260,9 @@ declare function dist(x1: number, y1: number, x2: number, y2: number): number;
  * @example
  * let red = color(255, 0, 0);
  * let blue = color(0, 0, 255, 128); // Semi-transparent
+ * let gray = color(128); // Grayscale
  */
-declare function color(r: number, g: number, b: number, a?: number): any;
+declare function color(r: number, g?: number, b?: number, a?: number): any;
 
 /**
  * p5.js Transform Functions - Used for moving, rotating, and scaling
