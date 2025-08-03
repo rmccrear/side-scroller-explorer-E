@@ -10,10 +10,16 @@ The purpose of this repo is to allow you to explore how to use VSCode and Game L
 
 **Quick Fixes**
 
+Please work on these 7 updates to the game. (You don't need to do them in order.) You may work on them all together, break into pairs and divide the work.
+
+When completing these tasks, refer back to the code in [Unit 3](https://studio.code.org/courses/csd-2024/units/3) of Computer Science Discoveries. You may find your own code for [Lesson 21](https://studio.code.org/courses/csd-2024/units/3/lessons/21/student) useful. 
+
+You may also look at[documentation for p5](./P5_DOCS.md) and for [p5.play](./P5_PLAY_DOCS.md) for easy reference.
+
 - [ ] (1) Add a mountain to the background in `background.js`
 - [ ] (2) Change one of the sprites in `animations.js`
 - [ ] (3) Randomize the position and speed of the enemy and food in `sprite-movement.js`
-- [ ] (4) Health decreases when the player touches the enemy (multiple files)
+- [ ] (4) Health decreases when the player touches the enemy (multiple files) Hint: use the Watcher in Dev Tools
 - [ ] (5) Add health to the display boards in `display-boards.js`
 - [ ] (6) Change the rotation of the enemy when it attacks the player in `sprite-interactions.js` (touches)
 - [ ] (7) Fix the player's jump so they don't fall through the floor
