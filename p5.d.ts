@@ -320,6 +320,57 @@ declare function rotate(angle: number): void;
 declare function scale(x: number, y?: number): void;
 
 /**
+ * Draws an arc
+ * @param x - X coordinate of center
+ * @param y - Y coordinate of center
+ * @param w - Width of arc
+ * @param h - Height of arc
+ * @param start - Starting angle in radians
+ * @param stop - Ending angle in radians
+ * @param mode - Arc mode (PIE, OPEN, CHORD, optional)
+ * @example
+ * arc(100, 100, 80, 80, 0, PI, PIE); // Pie slice
+ * arc(200, 100, 80, 80, 0, PI, OPEN); // Open arc
+ * arc(300, 100, 80, 80, 0, PI, CHORD); // Chord
+ */
+declare function arc(x: number, y: number, w: number, h: number, start: number, stop: number, mode?: string): void;
+
+/**
+ * Sets the text font
+ * @param font - Font name or font object
+ * @example
+ * textFont("Arial");
+ * textFont("Times", 24);
+ */
+declare function textFont(font: string | any, size?: number): void;
+
+/**
+ * Begins a custom shape definition
+ * Use with vertex() to define custom shapes
+ * @example
+ * shape();
+ * vertex(0, 0);
+ * vertex(50, 0);
+ * vertex(25, 50);
+ * endShape();
+ */
+declare function shape(): void;
+
+/**
+ * Draws a regular polygon with the specified number of sides
+ * @param x - X coordinate of the polygon center
+ * @param y - Y coordinate of the polygon center
+ * @param sides - Number of sides (3 = triangle, 4 = square, etc.)
+ * @param size - Size of the polygon (radius from center to vertices)
+ * @param rotation - Rotation angle in degrees (optional)
+ * @example
+ * regularPolygon(200, 200, 3, 50); // Triangle
+ * regularPolygon(300, 300, 6, 40, 30); // Rotated hexagon
+ */
+declare function regularPolygon(x: number, y: number, sides: number, size: number, rotation?: number): void;
+
+
+/**
  * p5.js Constants - Used for alignment and positioning
  */
 
