@@ -38,7 +38,7 @@ When completing these tasks, refer back to the code in [Unit 3](https://studio.c
 
 You may also look at[documentation for p5](./P5_DOCS.md) and for [p5.play](./P5_PLAY_DOCS.md) for easy reference.
 
-- [ ] (1) Add a mountain to the background in `background.js`
+- [ ] (1) Add a sun or mountains to the background in `background.js`
 - [ ] (2) Fix one of the sprites in `animations.js`
 - [ ] (3) Randomize the position and speed of the enemy and food in `sprite-movement.js`
 - [ ] (4) Health decreases when the player touches the enemy (multiple files) Hint: use the Watcher in Dev Tools to monitor the changes in the variable.
