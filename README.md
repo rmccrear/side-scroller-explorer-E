@@ -46,6 +46,8 @@ You may also look at[documentation for p5](./P5_DOCS.md) and for [p5.play](./P5_
 - [ ] (6) Change the rotation of the enemy when it attacks the player in `sprite-interactions.js` (touches)
 - [ ] (7) Fix the player's jump so they don't fall through the floor
 
+*Next:* Use GitHub Pages to serve your game as a website.
+
 After completing these steps, take a careful look at `script.js` and try to understand how all the pieces fit. Then move on to Challenges.
 
 **Challenges**
