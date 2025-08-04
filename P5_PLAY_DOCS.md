@@ -63,6 +63,90 @@ function draw() {
   // Handle player movement
   if (keyDown('RIGHT_ARROW')) {
     player.velocityX = 5;
+
+## Snippets
+
+Quick reference for all 28 core p5.play functions and properties.
+
+### Sprite Properties
+
+```javascript
+// Position
+sprite.x = 200;                    // X coordinate of center
+sprite.y = 300;                    // Y coordinate of center
+
+// Movement
+sprite.velocityX = 5;              // Horizontal velocity (positive = right)
+sprite.velocityY = -3;             // Vertical velocity (positive = down)
+
+// Visual
+sprite.scale = 2;                  // Scale factor (1 = normal, 2 = double)
+sprite.width = 50;                 // Width in pixels
+sprite.height = 50;                // Height in pixels
+sprite.visible = true;             // Show/hide sprite
+sprite.rotateToDirection = true;   // Auto-rotate to movement direction
+sprite.rotation = 45;              // Rotation angle in degrees
+sprite.rotationSpeed = 5;          // Rotation speed in degrees per frame
+sprite.shapeColor = color(255,0,0); // Shape color (when no image)
+sprite.depth = 1;                  // Drawing order (higher = on top)
+sprite.bounciness = 0.8;          // Bounciness factor (0-1)
+```
+
+### Sprite Methods
+
+```javascript
+// Debug
+sprite.debug = true;               // Show collision box and debug info
+
+// Collision
+sprite.isTouching(target);         // Check if touching another sprite/group
+sprite.bounce(target);             // Bounce off another sprite/group
+sprite.bounceOff(target);          // Bounce off target (reverse direction)
+sprite.collide(target);            // Handle collision detection and response
+sprite.displace(target);           // Push away from target if overlapping
+sprite.setCollider(type, ...args); // Set collision shape (rect, circle, point)
+
+// Animation
+sprite.nextFrame();                // Advance to next animation frame
+sprite.setFrame(frame);            // Set specific animation frame
+sprite.setVelocity(x, y);         // Set velocity directly
+sprite.addAnimation(label, animation); // Add animation to sprite
+```
+
+### Utility Functions
+
+```javascript
+// Edge creation
+createEdgeSprites();               // Create invisible screen edge sprites
+
+// Animation loading
+loadAnimation(...frameImages);     // Create animation from image files
+loadSpriteSheet(image, frameWidth, frameHeight, numFrames); // Load sprite sheet
+```
+
+### Common Usage Patterns
+
+```javascript
+// Movement pattern
+if (keyDown("RIGHT_ARROW")) {
+  player.velocityX = 5;
+  player.changeAnimation("walk");
+} else {
+  player.velocityX = 0;
+  player.changeAnimation("idle");
+}
+
+// Collision pattern
+if (player.isTouching(enemy)) {
+  player.bounceOff(enemy);
+  player.shapeColor = color(255, 0, 0); // Turn red
+}
+
+// Animation pattern
+let walkAnim = loadAnimation("walk1.png", "walk2.png", "walk3.png");
+player.addAnimation("walk", walkAnim);
+player.changeAnimation("walk");
+```
   } else if (keyDown('LEFT_ARROW')) {
     player.velocityX = -5;
   } else {
@@ -345,6 +429,7 @@ function draw() {
 ---
 
 ## Animations
+> **📚 For detailed animation workflow and troubleshooting, see [Sprite Animation Workflow](#sprite-animation-workflow) below.**
 
 ### Creating Animations
 
@@ -883,6 +968,220 @@ function draw() {
   
   // Shooting
   if (keyWentDown('SPACE')) {
+
+---
+
+## Sprite Animation Workflow
+
+### Animation Workflow
+
+**Important**: The animation system has changed! Previously, students used `setAnimation(label)` to set animations. Now you must manually load images and add animations to sprites.
+
+### Step-by-Step Animation Process
+
+#### Step 1: Load Animation Assets
+First, load your animation images in the `preload()` function:
+
+```javascript
+let walkAnim, idleAnim, jumpAnim;
+
+function preload() {
+  // Method 1: Load individual image files
+  walkAnim = loadAnimation("walk1.png", "walk2.png", "walk3.png");
+  idleAnim = loadAnimation("idle1.png", "idle2.png");
+  
+  // Method 2: Load sprite sheet
+  jumpAnim = loadSpriteSheet("jump_sheet.png", 32, 32, 4);
+}
+```
+
+#### Step 2: Add Animations to Sprite
+Add the loaded animations to your sprite:
+
+```javascript
+function setup() {
+  createCanvas(400, 400);
+  
+  player = createSprite(200, 200, 50, 50);
+  
+  // Add animations to sprite
+  player.addAnimation("walk", walkAnim);
+  player.addAnimation("idle", idleAnim);
+  player.addAnimation("jump", jumpAnim);
+}
+```
+
+#### Step 3: Change Animations
+Use `changeAnimation()` to switch between animations:
+
+```javascript
+function draw() {
+  background(220);
+  
+  // Change animation based on player state
+  if (keyDown("RIGHT_ARROW") || keyDown("LEFT_ARROW")) {
+    player.changeAnimation("walk");
+  } else if (keyDown("SPACE")) {
+    player.changeAnimation("jump");
+  } else {
+    player.changeAnimation("idle");
+  }
+  
+  drawSprites();
+}
+```
+
+### Animation Loading Methods
+
+#### Method 1: Individual Image Files
+Load separate image files for each frame:
+
+```javascript
+function preload() {
+  // Load walking animation from separate files
+  let walkAnim = loadAnimation(
+    "walk1.png", 
+    "walk2.png", 
+    "walk3.png", 
+    "walk4.png"
+  );
+  
+  // Load idle animation
+  let idleAnim = loadAnimation("idle1.png", "idle2.png");
+}
+```
+
+#### Method 2: Sprite Sheet
+Load a single image containing multiple frames:
+
+```javascript
+function preload() {
+  // Load sprite sheet: image, frameWidth, frameHeight, numFrames
+  let playerAnim = loadSpriteSheet("player_sheet.png", 32, 32, 8);
+  let explosionAnim = loadSpriteSheet("explosion.png", 64, 64, 6);
+}
+```
+
+### Animation Properties
+
+Control how animations play:
+
+```javascript
+function preload() {
+  walkAnim = loadAnimation("walk1.png", "walk2.png", "walk3.png");
+  
+  // Set animation properties
+  walkAnim.frameDelay = 5; // Slower animation (higher = slower)
+  walkAnim.loop = true; // Animation loops (default: true)
+}
+
+function setup() {
+  player = createSprite(200, 200, 50, 50);
+  player.addAnimation("walk", walkAnim);
+  
+  // Control animation playback
+  player.animation.play(); // Start playing
+  player.animation.pause(); // Pause animation
+  player.animation.stop(); // Stop and reset to first frame
+}
+```
+
+### Complete Animation Example
+
+```javascript
+let player, walkAnim, idleAnim, jumpAnim;
+
+function preload() {
+  // Load all animations
+  walkAnim = loadAnimation("walk1.png", "walk2.png", "walk3.png");
+  idleAnim = loadAnimation("idle1.png", "idle2.png");
+  jumpAnim = loadSpriteSheet("jump_sheet.png", 32, 32, 4);
+}
+
+function setup() {
+  createCanvas(400, 400);
+  
+  // Create player sprite
+  player = createSprite(200, 200, 50, 50);
+  
+  // Add all animations
+  player.addAnimation("walk", walkAnim);
+  player.addAnimation("idle", idleAnim);
+  player.addAnimation("jump", jumpAnim);
+  
+  // Start with idle animation
+  player.changeAnimation("idle");
+}
+
+function draw() {
+  background(220);
+  
+  // Handle movement and animation
+  if (keyDown("RIGHT_ARROW")) {
+    player.velocityX = 3;
+    player.changeAnimation("walk");
+  } else if (keyDown("LEFT_ARROW")) {
+    player.velocityX = -3;
+    player.changeAnimation("walk");
+  } else if (keyDown("SPACE")) {
+    player.velocityY = -5;
+    player.changeAnimation("jump");
+  } else {
+    player.velocityX = 0;
+    player.changeAnimation("idle");
+  }
+  
+  drawSprites();
+}
+```
+
+### Animation Tips
+
+1. **Always load in `preload()`**: This ensures images are loaded before the game starts
+2. **Use meaningful names**: Name your animations clearly (`"walk"`, `"idle"`, `"jump"`)
+3. **Check file paths**: Make sure your image files are in the correct folder
+4. **Optimize with sprite sheets**: Use sprite sheets for better performance
+5. **Set appropriate frame delays**: Higher values = slower animations
+
+### Common Animation Patterns
+
+```javascript
+// Pattern 1: Movement-based animations
+if (player.velocityX !== 0) {
+  player.changeAnimation("walk");
+} else {
+  player.changeAnimation("idle");
+}
+
+// Pattern 2: State-based animations
+if (player.isTouching(ground)) {
+  player.changeAnimation("idle");
+} else {
+  player.changeAnimation("jump");
+}
+
+// Pattern 3: Event-based animations
+if (keyWentDown("SPACE")) {
+  player.changeAnimation("jump");
+}
+```
+
+### Troubleshooting Animations
+
+**Animation not playing?**
+- Check that images are loaded in `preload()`
+- Verify file paths are correct
+- Make sure you called `addAnimation()` before `changeAnimation()`
+
+**Animation too fast/slow?**
+- Adjust `frameDelay` property (higher = slower)
+- Check your animation's `frameDelay` value
+
+**Animation not changing?**
+- Ensure you're calling `changeAnimation()` with the correct label
+- Verify the animation was added with `addAnimation()`
+
+---
     let bullet = createSprite(player.x, player.y, 10, 10);
     bullet.shapeColor = color(255, 255, 0);
     bullet.addTag("bullet");
