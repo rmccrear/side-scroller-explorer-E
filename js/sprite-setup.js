@@ -5,6 +5,7 @@ function setupSprites() {
   
   // Create food sprite - moving from right to left
   food = createSprite(400, 150, 30, 30);
+  food.addAnimation('food', foodAnimation);
   food.velocityX = -1;
   food.velocityY = 0;
   
