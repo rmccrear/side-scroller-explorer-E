@@ -9,4 +9,8 @@ function doSpriteInteraction() {
        health = health - 1; // Subtract 1 points
 
     }
+    if (player.y > 350) {
+        player.velocityY = 0;
+        player.y =300;
+    }
 }
