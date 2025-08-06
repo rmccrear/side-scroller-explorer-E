@@ -15,7 +15,7 @@ function doSpriteInteraction() {
     }
     if (player.isTouching(food)) {
         food.visible = false;
-        food.x = 400;
+        food.x = 450;
     }
 }
     
