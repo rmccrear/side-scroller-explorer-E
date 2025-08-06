@@ -11,6 +11,11 @@ function doSpriteInteraction() {
     }
     if (player.y > 350) {
         player.velocityY = 0;
-        player.y =300;
+        player.y = 300;
+    }
+    if (player.isTouching(food)) {
+        food.visible = false;
+        food.x = 500;
     }
 }
+    
