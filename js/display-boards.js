@@ -19,6 +19,6 @@ function showBoards() {
     fill(210, 1, 3); // Red text
     textSize(48);
     textAlign(TOP, CENTER);
-    text("Game Over!", width / 200, height / 200);
+    text("Game Over!", width / 5, height / 5);
   } 
 }
